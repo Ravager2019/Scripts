@@ -12,11 +12,66 @@ function Get-LaptopType {
         throw "Invalid laptop type. Please enter 'O' for Office or 'W' for Warehouse."
     }
 }
+# Switch Case for location
+switch ($location) {
+    "ATL"{
 
-# Function to get locations from Active Directory
-function Get-ADLocations {
-    $locations = Get-ADOrganizationalUnit -Filter * | Select-Object -ExpandProperty Name
-    return $locations
+        break
+    }
+    "BOS"{
+
+        break
+    }
+    "DET"{
+
+        break
+    }
+    "PA"{
+
+        break
+    }
+    "LON"{
+
+        break
+    }
+    "BB"{
+
+        break
+    }
+    "HOU"{
+
+        break
+    }
+    "LV"{
+
+        break
+    }
+    "SS"{
+
+        break
+    }
+    "MD"{
+
+    }
+    "MIA"{
+
+    }
+    "ORL"{
+
+    }
+    "TN"{
+
+    }
+    "NY"{
+
+    }
+    "SAC"{
+
+    }
+    Default {
+        Write-Host "Invalid Location Name Try Again."
+        
+    }
 }
 
 # Prompt for computer name
@@ -55,12 +110,17 @@ function Install-Applications {
     )
 
     if ($type -eq "Warehouse") {
-        winget install --id Microsoft.VisualStudioCode -e --source winget
         winget install --id Mozilla.Firefox -e --source winget
+        winget install --id TheDocumentFoundation.LibreOffice -e --source winget
+        winget install --id Adobe.Acrobat.Reader.64-bit -e --source winget
+        winget install --id Microsoft.Teams -e --source winget
         # Add more winget installs for Warehouse
     } elseif ($type -eq "Office") {
         winget install --id Microsoft.Office -e --source winget
         winget install --id Google.Chrome -e --source winget
+        winget install --id Adobe.Acrobat.Reader.64-bit -e --source winget
+        winget install --id Microsoft.Teams -e --source winget
+        winget install --Microsoft.Office -e --source winget
         # Add more winget installs for Office
     }
 

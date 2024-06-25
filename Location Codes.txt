@@ -1,0 +1,16 @@
+Location Codes
+ATL
+BOS
+DET
+PA
+LON
+BB
+HOU
+LV
+SS
+MD
+MIA
+ORL
+TN
+NY
+SAC
