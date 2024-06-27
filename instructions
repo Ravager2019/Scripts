@@ -1,0 +1,34 @@
+After some review of the project, I just wanna clarify a couple of things and give you guys some more specific tasks with the script:
+ 
+Goal:
+Create a script that runs from a USB( All file locations will be uploaded to the USB), that will stage a windows laptop depending on the location. For example, if it is a Las Vegas computer, it will install the Las Vegas automate. It will also install specific things based upon whether it is an office or a warehouse laptop. 
+ 
+ 
+Assigned Tasks:
+ 
+Tanner-
+Writing the Office installation package
+Writing the if, else statements to determine laptop locations and laptop type
+ 
+Abigail-
+Upload the install files to the USB and create folders
+Writing the warehouse installation package
+Writing the install locations from the USB for all locations ( Writing the file paths)
+ 
+Tips and tricks:
+ 
+The script should be pulling from the USB, if it tries to pull from our server without being on the domain it will be blocked due to network security.
+ 
+Don't worry about having it set the name for now, we would like this to be able to pull the install folders from a local location.
+ 
+Required items:
+ 
+Installs- Chrome, Sophos, Labtech, Drata, Adobe reader
+ 
+Office installs- Office, Cato
+ 
+Warehouse Installs- Libreoffice
+ 
+Program locations: Powershell ISE
+ 
+Collaboration, of course 

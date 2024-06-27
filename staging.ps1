@@ -14,17 +14,6 @@ function Get-LaptopType {
 }
 
 
-# Prompt for computer name
-$computerName = Read-Host -Prompt "Enter the computer name"
-
-
-# Join the domain
-$domain = "acadia.local"
-$username = "placeholder"  # Placeholder, replace with actual username
-$password = "placeholder"  # Placeholder, replace with actual password
-$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
-$credential = New-Object System.Management.Automation.PSCredential ($username, $securePassword)
-
 try {
     Add-Computer -DomainName $domain -Credential $credential -ComputerName $computerName
     Write-Host "Successfully joined the domain and restarting the computer."
@@ -41,7 +30,7 @@ function Install-Applications {
     )
 
     if ($type -eq "Warehouse") {
-        winget install --id Mozilla.Firefox -e --source winget
+        winget install --id Google.Chrome -e --source winget
         winget install --id TheDocumentFoundation.LibreOffice -e --source winget
         winget install --id Adobe.Acrobat.Reader.64-bit -e --source winget
         winget install --id Microsoft.Teams -e --source winget
@@ -61,7 +50,7 @@ function Install-Applications {
         Start-Process -FilePath $installer.FullName -ArgumentList "/S" -Wait
     }
 }
-
+$location = Read-Host "Input Location Code"
 # Switch Case for location
 switch ($location) {
     "ATL"{
