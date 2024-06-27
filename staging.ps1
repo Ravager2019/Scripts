@@ -1,5 +1,5 @@
-# Path to the shared drive
-$sharedDrivePath = "\\sw-fs\share\las vegas\load\apps\Starter Pack"
+# Path to the drive
+$sharedDrivePath = "W:\Applications"
 
 # Function to determine laptop type
 function Get-LaptopType {
@@ -12,80 +12,11 @@ function Get-LaptopType {
         throw "Invalid laptop type. Please enter 'O' for Office or 'W' for Warehouse."
     }
 }
-# Switch Case for location
-switch ($location) {
-    "ATL"{
 
-        break
-    }
-    "BOS"{
-
-        break
-    }
-    "DET"{
-
-        break
-    }
-    "PA"{
-
-        break
-    }
-    "LON"{
-
-        break
-    }
-    "BB"{
-
-        break
-    }
-    "HOU"{
-
-        break
-    }
-    "LV"{
-
-        break
-    }
-    "SS"{
-
-        break
-    }
-    "MD"{
-
-    }
-    "MIA"{
-
-    }
-    "ORL"{
-
-    }
-    "TN"{
-
-    }
-    "NY"{
-
-    }
-    "SAC"{
-
-    }
-    Default {
-        Write-Host "Invalid Location Name Try Again."
-        
-    }
-}
 
 # Prompt for computer name
 $computerName = Read-Host -Prompt "Enter the computer name"
 
-# Prompt for location
-$locations = Get-ADLocations
-Write-Host "Available locations:"
-$locations | ForEach-Object { Write-Host $_ }
-$location = Read-Host -Prompt "Enter the location"
-
-if (-not ($locations -contains $location)) {
-    throw "Invalid location. Please enter a valid location from the list."
-}
 
 # Join the domain
 $domain = "acadia.local"
@@ -95,7 +26,7 @@ $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential ($username, $securePassword)
 
 try {
-    Add-Computer -DomainName $domain -Credential $credential -ComputerName $computerName -Restart
+    Add-Computer -DomainName $domain -Credential $credential -ComputerName $computerName
     Write-Host "Successfully joined the domain and restarting the computer."
 } catch {
     Write-Host "Failed to join the domain: $_"
@@ -128,6 +59,73 @@ function Install-Applications {
     $installers = Get-ChildItem -Path "$sharedDrivePath\$location"
     foreach ($installer in $installers) {
         Start-Process -FilePath $installer.FullName -ArgumentList "/S" -Wait
+    }
+}
+
+# Switch Case for location
+switch ($location) {
+    "ATL"{
+
+        break
+    }
+    "BOS"{
+
+        break
+    }
+    "DET"{
+
+        break
+    }
+    "PA"{
+
+        break
+    }
+    "LON"{
+
+        break
+    }
+    "BB"{
+
+        break
+    }
+    "HOU"{
+
+        break
+    }
+    "LV"{
+        $LVPath = "W:\Applications\LabTech\Agent_Install Las Vegas.MSI"
+
+        Write-Host "Installing LabTech Agent in Las Vegas..."
+        Start-Process msiexec.exe -ArgumentList "/i `"$LVPath`" /quiet /norestart" -NoNewWindow -Wait
+        Write-Host "Installation complete."
+
+        break
+    }
+    "SS"{
+
+        break
+    }
+    "MD"{
+
+    }
+    "MIA"{
+
+    }
+    "ORL"{
+
+    }
+    "TN"{
+
+    }
+    "NY"{
+
+    }
+    "SAC"{
+
+    }
+    Default {
+        Write-Host "Invalid Location Name Try Again."
+        
     }
 }
 
