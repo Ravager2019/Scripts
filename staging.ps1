@@ -40,7 +40,7 @@ function Install-Applications {
         Write-Host "Installing applications from shared drive at $sharedDrivePath..."
         $installers = Get-ChildItem -Path "$sharedDrivePath"
         foreach ($installer in $installers) {
-            Write-Host "Installing $installer.FullName..."
+            Write-Host "Installing $($installer.FullName)..."
             Start-Process -FilePath $installer.FullName -ArgumentList "/S" -Wait
         }
     } catch {
